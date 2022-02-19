@@ -9,14 +9,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 
-@RunWith(MockitoJUnitRunner.class)
-public class CatTest extends TestCase{
+    @RunWith(MockitoJUnitRunner.class)
+    public class CatTest extends TestCase{
 
-    @Mock
-    private Feline feline;
+     @Mock
+     private Feline feline;
 
-    @Test
-    public void getSoundReturnCorrectValue() {
+     @Test
+     public void getSoundReturnCorrectValue() {
 
         Cat cat = new Cat(feline);
         String sound = cat.getSound();
@@ -25,8 +25,8 @@ public class CatTest extends TestCase{
 
     // @Mock
     //Predator predator;
-   @Test
-    public void getFoodReturnFoodList() throws Exception {
+     @Test
+     public void getFoodReturnFoodList() throws Exception {
         Cat cat = new Cat(feline);
         List<String> expected =  List.of("Животные", "Птицы", "Рыба");
         // Mockito.when(predator.eatMeat()).thenReturn(expected);
