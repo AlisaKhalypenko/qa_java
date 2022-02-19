@@ -3,7 +3,7 @@ package com.example;
 import java.util.List;
 
 
-public class Lion extends Animal implements Predator {
+public class Lion {
 
     boolean hasMane;
 
@@ -17,7 +17,7 @@ public class Lion extends Animal implements Predator {
         }
     }
 
-    /* Первоначальный код:
+
     Feline feline = new Feline();
 
     public int getKittens() {
@@ -31,22 +31,7 @@ public class Lion extends Animal implements Predator {
     public List<String> getFood() throws Exception {
         return feline.getFood("Хищник");
     }
-}*/
+}
 
-    public int getKittens() {
-        return getKittens(1);
-    }
 
-    public int getKittens(int kittensCount) {
-        return kittensCount;
-    }
-
-    public boolean doesHaveMane() {
-        return hasMane;
-    }
-
-    @Override
-    public List<String> eatMeat() throws Exception {
-        return getFood("Хищник");
-    }
 }
