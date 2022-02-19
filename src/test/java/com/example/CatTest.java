@@ -25,7 +25,7 @@ public class CatTest extends TestCase{
 
     // @Mock
     //Predator predator;
-    @Test
+   @Test
     public void getFoodReturnFoodList() throws Exception {
         Cat cat = new Cat(feline);
         List<String> expected =  List.of("Животные", "Птицы", "Рыба");
@@ -36,7 +36,7 @@ public class CatTest extends TestCase{
         /* просьба прокомментировать этот тест: он падает, т.к. значение Actual
         получается пустым. Кажется, что так должно быть, т.к. ни в интерфейсе Predator
         ни в классе Cat тело метода не прописано. Так ли должен проходить тест или я что-то
-        не так понимаю???
-         */
+        не так понимаю???*/
+
     }
 }

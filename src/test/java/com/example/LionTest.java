@@ -2,7 +2,9 @@ package com.example;
 
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.util.List;
@@ -28,8 +30,19 @@ public class LionTest extends TestCase {
                 {"Самец", true},
                 {"Самка", false},
                 {"Другое", false},
-                //как протестировать исключение? так, как выше в последнем массиве??
         };
+    }
+
+    @Rule
+    public ExpectedException expectionRule = ExpectedException.none();
+
+    @Test
+    public void doesHaveManeException() throws Exception{
+        expectionRule.expect(Exception.class);
+        expectionRule.expectMessage("Используйте допустимые значения пола животного - самец или самка");
+        Lion lion = new Lion(this.sex);
+        boolean actual = lion.doesHaveMane();
+        assertEquals("Используйте допустимые значения пола животного - самец или самка", expectionRule);
     }
 
     @Test
