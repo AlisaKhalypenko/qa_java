@@ -2,68 +2,62 @@ package com.example;
 
 import junit.framework.TestCase;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.util.List;
+
+import static org.junit.Assert.assertThrows;
 
 
     @RunWith(Parameterized.class)
     public class LionTest extends TestCase {
 
-     private final String sex;
-     private final boolean expected;
+        private final String sex;
+        private final boolean expected;
+        private final Feline feline;
 
 
-     public LionTest (String sex, boolean expected){
+     public LionTest (String sex, boolean expected, Feline feline){
          this.sex = sex;
          this.expected = expected;
-
+         this.feline = feline;
     }
 
      @Parameterized.Parameters
-     public static Object[][] getSex() {
+     public static Object[][] getParams() {
          return new Object[][] {
-                 {"Самец", true},
-                 {"Самка", false},
-                 {"Другое", false},
+                 {"Самец", true, new Feline()},
+                 {"Самка", false, new Feline()},
+
         };
     }
 
-     @Rule
-     public ExpectedException expectionRule = ExpectedException.none();
-
      @Test
      public void doesHaveManeException() throws Exception{
-         expectionRule.expect(Exception.class);
-         expectionRule.expectMessage("Используйте допустимые значения пола животного - самец или самка");
-         Lion lion = new Lion(this.sex);
-         boolean actual = lion.doesHaveMane();
-         assertEquals("Используйте допустимые значения пола животного - самец или самка", expectionRule);
+         assertThrows(Exception.class, () -> new Lion("Другое", new Feline()));
     }
 
      @Test
      public void doesHaveManeReturnCorrectValue() throws Exception {
-         Lion lion = new Lion(sex) ;
+         Lion lion = new Lion(sex, feline) ;
          boolean actual = lion.doesHaveMane();
          assertEquals(expected, actual);
     }
 
      @Test
      public void getKittensReturnValue() throws Exception{
-         Lion lion = new Lion("Самец");
+         Lion lion = new Lion("Самец", feline);
          int actual = lion.getKittens();
          assertEquals(1, actual);
     }
 
 
      @Test
-     public void eatMeatReturnList() throws Exception{
+     public void getFoodReturnList() throws Exception{
          List<String> eat = List.of("Животные", "Птицы", "Рыба");
-         Lion lion = new Lion("Самец");
-         List<String> eatLion = lion.eatMeat();
+         Lion lion = new Lion("Самец", feline);
+         List<String> eatLion = lion.getFood();
          Assert.assertEquals(eat, eatLion);
     }
 }
