@@ -15,20 +15,18 @@ import static org.junit.Assert.assertThrows;
 
         private final String sex;
         private final boolean expected;
-        private final Feline feline;
 
 
-     public LionTest (String sex, boolean expected, Feline feline){
+     public LionTest (String sex, boolean expected){
          this.sex = sex;
          this.expected = expected;
-         this.feline = feline;
     }
 
      @Parameterized.Parameters
      public static Object[][] getParams() {
          return new Object[][] {
-                 {"Самец", true, new Feline()},
-                 {"Самка", false, new Feline()},
+                 {"Самец", true},
+                 {"Самка", false},
 
         };
     }
@@ -40,6 +38,7 @@ import static org.junit.Assert.assertThrows;
 
      @Test
      public void doesHaveManeReturnCorrectValue() throws Exception {
+         Feline feline = new Feline();
          Lion lion = new Lion(sex, feline) ;
          boolean actual = lion.doesHaveMane();
          assertEquals(expected, actual);
@@ -47,6 +46,7 @@ import static org.junit.Assert.assertThrows;
 
      @Test
      public void getKittensReturnValue() throws Exception{
+         Feline feline = new Feline();
          Lion lion = new Lion("Самец", feline);
          int actual = lion.getKittens();
          assertEquals(1, actual);
@@ -55,6 +55,7 @@ import static org.junit.Assert.assertThrows;
 
      @Test
      public void getFoodReturnList() throws Exception{
+         Feline feline = new Feline();
          List<String> eat = List.of("Животные", "Птицы", "Рыба");
          Lion lion = new Lion("Самец", feline);
          List<String> eatLion = lion.getFood();
